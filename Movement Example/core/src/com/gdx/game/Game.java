@@ -22,7 +22,7 @@ public class Game extends ApplicationAdapter {
 	Box2DDebugRenderer debugRenderer;
 	Matrix4 debugMatrix;
 	OrthographicCamera camera;
-	final float frictionUp = -1f;
+	boolean smoothMovement = true;
 	final float PIXELS_TO_METERS = 100f;
 	@Override
 	public void create () {
@@ -80,22 +80,60 @@ public class Game extends ApplicationAdapter {
 
 	public void InputHandler() {
 
-		if (body.getLinearVelocity().y <= 0) {
-			body.setLinearVelocity(0f,0f); // set y velo to 0
+		if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && smoothMovement) {
+			smoothMovement = false;
+
+		} else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && !smoothMovement) {
+			smoothMovement = true;
 
 		}
 
-		// check for W
-		if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-			body.applyForceToCenter(0f,0.5f,true); // set acceleration
+		if (smoothMovement) {
+			if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+				body.applyForceToCenter(0f,1f,true);
 
-		} else if (Gdx.input.isKeyPressed(Input.Keys.W) && body.getLinearVelocity().y < 1 && body.getLinearVelocity().y > 0){
-			body.setLinearVelocity(0, 1); // clamp y to 1
+			}
+			if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+				body.applyForceToCenter(0f,-1f,true);
 
-		} else if (!Gdx.input.isKeyPressed(Input.Keys.W) && body.getLinearVelocity().y > 0) {
-			body.applyForceToCenter(0f, frictionUp, true); // create friction
+			}
+			if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+				body.applyForceToCenter(-1f,0f,true);
+
+			}
+			if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+				body.applyForceToCenter(1f,0f,true);
+
+			}
+		}
+
+		if (!smoothMovement) {
+
+			if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+				body.setLinearVelocity(0f, 5f);
+
+			}
+
+			if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+				body.setLinearVelocity(0f, -5f);
+
+			}
+			if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+				body.setLinearVelocity(-5f, 0f);
+
+			}
+			if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+				body.setLinearVelocity(5f, 0f);
+
+			}
+
+			if (!Gdx.input.isKeyPressed(Input.Keys.W) && !Gdx.input.isKeyPressed(Input.Keys.S) && !Gdx.input.isKeyPressed(Input.Keys.A) && !Gdx.input.isKeyPressed(Input.Keys.D)) {
+				body.setLinearVelocity(0f, 0f);
+			}
 
 		}
+
+
 
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT_BRACKET)) {
 			body.applyTorque(0.1f, true); // rotate left
@@ -104,6 +142,7 @@ public class Game extends ApplicationAdapter {
 			body.applyTorque(-0.1f, true); // rotate right
 
 		}
+
 	}
 
 	@Override
