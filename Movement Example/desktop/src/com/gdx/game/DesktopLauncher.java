@@ -10,7 +10,7 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setResizable(false);
 		config.setWindowedMode(800,800);
-		config.setTitle("Expeditionaries");
+		config.setTitle("Movement Example");
 		new Lwjgl3Application(new Game(), config);
 
 	}
