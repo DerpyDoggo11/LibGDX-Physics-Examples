@@ -84,6 +84,7 @@ public class Game extends ApplicationAdapter {
 		wallBody.createFixture(fixtureDefWall);
 
 		shape.dispose();
+		wallShape.dispose();
 	}
 
 	@Override
