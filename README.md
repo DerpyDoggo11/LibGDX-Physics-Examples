@@ -43,3 +43,16 @@ S = move down
 A = move left
 
 D = move right
+
+-------------
+
+Controls for Advanced Collision Example:
+
+W = move up
+
+S = move down
+
+A = move left
+
+D = move right
+
