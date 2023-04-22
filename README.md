@@ -56,3 +56,10 @@ A = move left
 
 D = move right
 
+------------
+
+Attributions:
+-
+
+I would like to note that all assets used in these examples are open source material mostly from https://kenney-assets.itch.io/tiny-dungeon.
+
