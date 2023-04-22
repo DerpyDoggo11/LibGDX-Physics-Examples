@@ -1,5 +1,5 @@
 # LibGDX-Physics-Examples
-Box2d Java Port examples for LibGDX
+Box2d examples for LibGDX
 -
 
 Please note that the code in this project may not be 100% correct, so please use additional resources to back-up your information.
